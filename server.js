@@ -12,20 +12,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const routes = fs
-  .readdirSync("./routes")
-  .filter((file) => file !== "authRoutes.js")
-  .map((file) => {
-    const fileName = file.replace(".js", "");
-    const routePath = fileName === "jobsRoutes" ? "/" : `/${fileName}`;
-    return { path: routePath, router: require(`./routes/${fileName}`) };
-  });
-
-// Use routes
-routes.forEach((route) => app.use(route.path, route.router));
-
-// Use authRoutes
 app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/score", require("./routes/scoreRoutes"));
 
 const server = http.createServer(app);
 

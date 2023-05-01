@@ -8,6 +8,7 @@ const auth = require("../middleware/auth");
 const registerSchema = Joi.object({
   password: Joi.string().min(6).max(12).required(),
   mail: Joi.string().email().required(),
+  username: Joi.string().min(4).max(12).required(),
 });
 
 const loginSchema = Joi.object({

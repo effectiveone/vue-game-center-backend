@@ -26,6 +26,7 @@ const postLogin = async (req, res) => {
       return res.status(200).json({
         userId: user._id,
         token: token,
+        username: user.username,
       });
     }
 
